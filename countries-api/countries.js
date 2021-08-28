@@ -45,9 +45,9 @@ const displayCountries = data => {
 
             div.innerHTML = `
             <div class="country position-relative" style='background:url(${country.flag})' data-bs-toggle="modal" data-bs-target="#detailsContainer">
-                <h4 class="text-center text-white fw-bold position-absolute bottom-0 w-100 m-0 py-3 lh-1"
+                <h4 class="text-center text-white fw-bold position-absolute bottom-0 w-100 m-0 px-3 pt-5 pb-2 lh-1"
                     style="
-                        background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4),rgba(0,0,0,0.5));backdrop-filter:blur(1px);">
+                        background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4),rgba(0,0,0,0.5));">
                     ${country.name}<br>
                     <small style="font-size:10px">Click to see details</small>
                 </h4>
