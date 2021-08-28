@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries API</title>
+
+
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <style>
+        .country {
+            height: 200px;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            cursor: pointer;
+        }
+
+        @media screen and (min-width:780px) {
+            .country {
+                height: 250px;
+            }
+        }
+
+        #loadingMessage {
+            animation: loadingAni 1500ms linear infinite;
+        }
+
+        @keyframes loadingAni {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="py-5 container">
+    <h1 class="text-secondary text-center fw-bold">Countries API</h1>
+    <div class="row px-3 flex-column flex-sm-row mx-auto" style="max-width:700px;">
+        <input type="text" class="col-12 col-sm-10 border border-info py-2 my-2" id="searchField"
+            placeholder="type any country name">
+
+        <input type="button" value="Search" class="col-12 col-sm-2 fw-bold border-0 bg-info py-2 my-2 text-white"
+            onclick="loadData()">
+    </div>
+
+    <div id="countriesContainer" class="position-relative row row-cols-1 row-cols-sm-3 pt-5 g-4"></div>
+
+
+    <!-- Details Modal -->
+    <div class="modal fade" id="detailsContainer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h2 class="modal-title fw-bold" id="modal-country-name"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body fs-5" id="modal-country-details">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="countries.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
