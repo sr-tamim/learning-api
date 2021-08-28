@@ -29,25 +29,32 @@ const displayCountries = data => {
         container.removeChild(container.lastChild)
     }
 
+    if (data.status == 404) {
+        container.innerHTML = `
+        <h3 class="position-absolute w-100 fw-bold d-flex align-items-center justify-content-center" style='height:200px'>
+            No Country Found..!
+        </h3>`
+    }
+    else {
+        for (const country of data) {
+            // create a div
+            const div = document.createElement('div');
+            div.classList.add('col');
 
-    for (const country of data) {
-        // create a div
-        const div = document.createElement('div');
-        div.classList.add('col');
+            div.addEventListener('click', () => { showDetails(country) })
 
-        div.addEventListener('click', () => { showDetails(country) })
+            div.innerHTML = `
+            <div class="country position-relative" style='background:url(${country.flag})' data-bs-toggle="modal" data-bs-target="#detailsContainer">
+                <h4 class="text-center text-white fw-bold position-absolute bottom-0 w-100 m-0 py-3 lh-1"
+                    style="
+                        background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4),rgba(0,0,0,0.5));backdrop-filter:blur(1px);">
+                    ${country.name}<br>
+                    <small style="font-size:10px">Click to see details</small>
+                </h4>
+            </div>`;
 
-        div.innerHTML = `
-        <div class="country position-relative" style='background:url(${country.flag})' data-bs-toggle="modal" data-bs-target="#detailsContainer">
-            <h4 class="text-center text-white fw-bold position-absolute bottom-0 w-100 m-0 py-3 lh-1"
-                style="
-                    background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4),rgba(0,0,0,0.5));backdrop-filter:blur(1px);">
-                ${country.name}<br>
-                <small style="font-size:10px">Click to see details</small>
-            </h4>
-        </div>`;
-
-        container.appendChild(div);
+            container.appendChild(div);
+        }
     }
 }
 
