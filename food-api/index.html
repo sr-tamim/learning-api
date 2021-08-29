@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food API</title>
+
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <style>
+        .meal img {
+            transition: 1s ease;
+        }
+
+        .meal:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body class="container py-5 px-3 bg-dark text-white">
+    <h1 class="text-center text-warning fw-bold display-5">Find The Food You Love</h1>
+    <div class="row w-100 mx-auto mt-4 mb-5">
+        <input type="text" id="searchField" placeholder="type your favorite food name here"
+            class="col-12 col-sm-10 bg-transparent text-white py-2 border border-warning">
+        <input type="button" value="Search" onclick="loadData()"
+            class="col-12 col-sm-2 fs-5 fw-bold py-2 bg-warning border border-warning">
+    </div>
+
+    <!-- meals container -->
+    <div id="mealsContainer" class="position-relative row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4"></div>
+
+
+    <!-- Details Modal -->
+    <div class="modal fade" id="detailsContainer" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <style>
+                .btn-close {
+                    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat !important;
+                }
+            </style>
+
+            <div class="modal-content p-3 p-sm-4 bg-dark">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title fw-bold" id="modal-food-name"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body fs-5 p-0" id="modal-food-details">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="mealdb.js"></script>
+
+    <!-- bootstrap js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
