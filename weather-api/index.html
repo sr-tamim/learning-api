@@ -18,12 +18,19 @@
     style="min-height:100vh;background:url(back.jpg);background-repeat:no-repeat;background-size:cover;background-position:right;">
 
     <main style="z-index:10;">
-        <h5 class="text-white text-center p-3">
+        <h5 class="text-white text-center p-2">
             You'll not get any weather data if you don't allow us to get your
             location
         </h5>
 
-        <div id="weather-details" class="text-center my-5" style="padding-top:15vh">
+        <div class="mt-5 row px-2 mx-auto" style="max-width:800px">
+            <input id="inputField" type="text" class="col-12 col-sm-8 border border-info py-2"
+                placeholder="city name, country name shortcode">
+            <input onclick="getWeatherFromName()" type="button" value="Get Weather Details"
+                class="col-12 col-sm-4 border-0 border-info bg-info fw-bold text-white py-2">
+        </div>
+
+        <div id="weather-details" class="text-center my-5" style="padding-top:10vh">Loading...
         </div>
     </main>
 
