@@ -1,9 +1,12 @@
 // location api
 navigator.geolocation.getCurrentPosition(getWeatherFromCoords);
 
+const searchField = document.getElementById('inputField');
+const container = document.getElementById('weather-details');
+
 
 function getWeatherFromCoords(position) {
-    document.getElementById('weather-details').innerHTML = 'Loading...';
+    container.innerHTML = 'Loading...';
 
     const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=79318109f33df61d79f879497f630568`;
 
@@ -12,29 +15,6 @@ function getWeatherFromCoords(position) {
         .then(data => showWeatherFromLocation(data));
 }
 
-async function getWeatherFromName() {
-    const searched = document.getElementById('inputField').value;
-    if (searched == '') {
-        alert('Fill up input field first');
-        return;
-    }
-    document.getElementById('inputField').value = '';
-
-    document.getElementById('weather-details').innerHTML = 'Loading...';
-
-    let areaName = searched.toLowerCase();
-    if (areaName.indexOf(',') != -1) {
-        areaName = searched.split(' ').join('');
-    }
-    else {
-        areaName = searched.split(' ').join(',');
-    }
-
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${areaName}&units=metric&appid=79318109f33df61d79f879497f630568`
-    const response = await fetch(url);
-    const data = await response.json();
-    showWeatherFromInput(data);
-}
 
 function showWeatherFromLocation(data) {
     let currentTime;
@@ -46,7 +26,7 @@ function showWeatherFromLocation(data) {
         currentTime = new Date().getHours() - 12 + ':' + new Date().getMinutes() + 'pm';
     }
 
-    document.getElementById('weather-details').innerHTML = `
+    container.innerHTML = `
         <h5>${data.timezone}</h5>
         <h1 class='display-2 fw-bold mb-1'>${data.current.temp}℃</h1>
         <h5 class='mb-3'>Feels Like: ${data.current.feels_like}℃</h5>
@@ -63,9 +43,39 @@ function showWeatherFromLocation(data) {
 }
 
 
+async function getWeatherFromName() {
+    const searched = searchField.value;
+    if (searched == '') {
+        alert('Fill up input field first');
+        return;
+    }
+    // clear input field
+    searchField.value = '';
+
+    container.innerHTML = 'Loading...';
+
+    let areaName = searched.toLowerCase();
+    if (areaName.indexOf(',') != -1) {
+        areaName = searched.split(' ').join('');
+    }
+    else {
+        areaName = searched.split(' ').join(',');
+    }
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${areaName}&units=metric&appid=79318109f33df61d79f879497f630568`
+    const response = await fetch(url);
+    const data = await response.json();
+    showWeatherFromInput(data);
+}
+
+
 function showWeatherFromInput(data) {
 
-    console.log(data);
+    // when no city found
+    if (data.cod === '404') {
+        container.innerHTML = data.message;
+    }
+
     let currentTime;
     if (new Date().getUTCHours() + parseInt(data.timezone / 3600) <= 12) {
         currentTime = new Date().getUTCHours() + parseInt(data.timezone / 3600) + ':' + (new Date().getUTCMinutes() + (data.timezone % 3600)) + 'am';
@@ -78,7 +88,7 @@ function showWeatherFromInput(data) {
         currentTime = (new Date().getUTCHours() + parseInt(data.timezone / 3600) - 24) + ':' + (new Date().getUTCMinutes() + (data.timezone % 3600)) + 'am';
     }
 
-    document.getElementById('weather-details').innerHTML = `
+    container.innerHTML = `
         <h5>${data.name + ', ' + data.sys.country}</h5>
         <h1 class='display-2 fw-bold mb-1'>${data.main.temp}℃</h1>
         <h5 class='mb-3'>Feels Like: ${data.main.feels_like}℃</h5>
