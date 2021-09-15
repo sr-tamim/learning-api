@@ -60,5 +60,3 @@ const showDetails = team => {
             ${team.strDescriptionEN}
         </div>`
 }
-
-loadData();

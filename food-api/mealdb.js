@@ -1,5 +1,10 @@
 
 const container = document.getElementById('mealsContainer');
+
+document.getElementById('searchField').addEventListener('keypress', event => {
+    if (event.key === "Enter") { loadData() }
+})
+
 const loadData = () => {
     // get searched text
     const searchedFor = document.getElementById('searchField').value;
@@ -47,7 +52,7 @@ const showMeals = data => {
         const div = document.createElement('div');
         div.classList.add('col', 'meal');
         div.style.cursor = 'pointer';
-        div.addEventListener('click', () => { showDetails(meal) })
+        div.addEventListener('click', () => { getDetails(meal) })
         div.innerHTML = `
             <div class='position-relative overflow-hidden' data-bs-toggle="modal" data-bs-target="#detailsContainer">
                 <img src="${meal.strMealThumb}" class='d-block w-100'>
