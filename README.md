@@ -5,3 +5,4 @@
 ### [Foods API (MealDB)](https://sr-tamim.github.io/learning-api/food-api/)
 ### [Sports API](https://sr-tamim.github.io/learning-api/sports-api/)
 ### [Weather API](https://sr-tamim.github.io/learning-api/weather-api/)
+### [GitHub API](https://sr-tamim.github.io/learning-api/github-api/)
