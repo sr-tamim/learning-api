@@ -8,7 +8,7 @@
 
 /* common styles */
 html{
-    font-size: 10px;
+    font-size: 7px;
 }
 *{ font-family: 'Trebuchet MS', Tahoma, sans-serif; }
 a{ text-decoration: none; color: inherit; }
@@ -41,19 +41,34 @@ a{ text-decoration: none; color: inherit; }
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2rem 1rem 8rem;
     margin: auto;
+    margin-top: 8rem;
+    margin-bottom: 6rem;
+    position: relative;
+}
+.search-container::after{
+    content: '';
+    position: absolute;
+    left: 4%;
+    bottom: 13%;
+    width: 100%;
+    height: 100%;
+    background: black;
+    border-radius: 10px;
+    z-index: -1;
+    opacity: 0.05;
+    transform: scaleY(1.3) skewX(-40deg);
 }
 
 .search-container input{
-    outline: 0;
-    padding: 1rem 3rem;
     font-size: 2rem;
+    outline: 0;
     border: 0;
+    padding: 1rem 3rem;
 }
 .search-container input[type=text]{
     background: linear-gradient(to right, rgb(255, 245, 245), rgb(255, 183, 197));
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); */
     padding: 1rem 1.5rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
@@ -94,6 +109,7 @@ a{ text-decoration: none; color: inherit; }
 .user-name{
     font-size: 3rem;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .user-name a{
@@ -122,12 +138,28 @@ a{ text-decoration: none; color: inherit; }
 .user-name a:hover::after{
     width: 1rem;
 }
+.followers-info{
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: lighter;
+}
 
 
 @media screen and (min-width: 992px) {
+    html{
+        font-size: 12px;
+    }
+
     .search-container{
         flex-direction: row;
     }
+    .search-container::after{
+        left: 13%;
+        bottom: 17%;
+        width: 79%;
+    }
+
     .search-container input[type=text]{
         width: 60%;
         border-bottom-left-radius: 1rem;
