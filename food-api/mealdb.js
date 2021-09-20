@@ -52,7 +52,7 @@ const showMeals = data => {
         const div = document.createElement('div');
         div.classList.add('col', 'meal');
         div.style.cursor = 'pointer';
-        div.addEventListener('click', () => { getDetails(meal) })
+        div.addEventListener('click', () => { showDetails(meal) })
         div.innerHTML = `
             <div class='position-relative overflow-hidden' data-bs-toggle="modal" data-bs-target="#detailsContainer">
                 <img src="${meal.strMealThumb}" class='d-block w-100'>
